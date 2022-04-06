@@ -1,0 +1,24 @@
+{
+  "type": "module",
+  "name": "tuiter-service",
+  "version": "1.0.0",
+  "description": "REST service for tuiter application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Node",
+    "REST",
+    "RESTful",
+    "API",
+    "HTTP",
+    "Server",
+    "Service"
+  ],
+  "author": "Manan Sheth",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
