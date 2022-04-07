@@ -1,1 +1,1 @@
-web: node tuiter-service\server.js
+web: node server.js
