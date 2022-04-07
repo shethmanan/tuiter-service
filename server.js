@@ -10,9 +10,7 @@ helloController(app);
 userController(app);
 tuitsController(app);
 
-app.get('/', (req, res) => {
-    res.send("Welcome to full stack development.");
-});
+
 
 
 app.listen(process.env.port || 4000);
