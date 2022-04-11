@@ -1,15 +1,14 @@
-import tuitList from "./tuits.js";
+import * as tuitsDao from "../database/tuits/tuits-dao.js"
 
-let tuits = tuitList;
 
-const createTuit = (req, res) => {
+
+const createTuit = async (req, res) => {
     let newTuit = req.body;
     newTuit = addDefaultValuesToTuit(newTuit);
-    tuits = [newTuit,...tuits];
-    res.json(newTuit);
+    const insertedTuit = await tuitsDao.createTuit(newTuit);
+    res.json(insertedTuit);
 }
 const addDefaultValuesToTuit = (newTuit) => {
-    newTuit._id = (new Date()).getTime() + '';
     newTuit.liked = false;
     newTuit.disliked = false;
     newTuit.topic = "New";
@@ -28,20 +27,25 @@ const addDefaultValuesToTuit = (newTuit) => {
     newTuit['avatar-image']= "../tuiter/images/react.png";
     return newTuit;
 }
-const findAllTuits = (req, res) => {
-    res.json(tuits);
+
+const findAllTuits = async (req, res) => {
+    const tuitList = await tuitsDao.findAllTuits();
+    tuitList.reverse();
+    res.json(tuitList);
 }
 
-const updateTuit = (req, res) => {
+const updateTuit = async (req, res) => {
     const tuitIdToUpdate = req.params.tid;
     const updatedTuit = req.body;
-    tuits = tuits.map(t => t._id === tuitIdToUpdate ? updatedTuit : t);
-    res.sendStatus(200);
+    const status = await tuitsDao.updateTuit(tuitIdToUpdate,updatedTuit);
+    console.log(updatedTuit);
+    // tuits = tuits.map(t => t._id === tuitIdToUpdate ? updatedTuit : t);
+    res.send(status);
 }
-const deleteTuit = (req, res) => {
+const deleteTuit = async (req, res) => {
     const tuitIdToDelete = req.params.tid;
-    tuits = tuits.filter(t => t._id !== tuitIdToDelete);
-    res.sendStatus(200);
+    const status = await tuitsDao.deleteTuit(tuitIdToDelete);
+    res.send(status);
 }
 
 export default (app) => {
