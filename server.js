@@ -6,7 +6,6 @@ import tuitsController from "./controllers/tuits-controller.js";
 import cors from "cors";
 
 // const DATABASE_CONNECTION = "mongodb://localhost:27017/webdev";
-// const DATABASE_CONNECTION = "mongodb+srv://shethmanan:MPSebix123@cluster0.v9jac.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 const DATABASE_CONNECTION = process.env.DB_CONNECTION_STRING
     || 'mongodb://localhost:27017/webdev'
 const app = express();
